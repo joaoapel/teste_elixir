@@ -1,5 +1,6 @@
 # Aprendizado
 
+
 - O iex é iex.bat no Windows ATENÇÃO
 - CTRL + C para sair do IEx
 - https://www.youtube.com/watch?v=A_43Iy9nCCo
@@ -12,15 +13,17 @@
 - _variavel para variáveis não utilizadas
 - Destruturação é igual unpacking no Javascript {a, b} = {coisa, coisa1}
 - Módulo Enum -> frequencies
--   # for i <- [1,2,3], do: i*i
+-  ```elixir
+    for i <- [1,2,3], do: i*i
 
-  # for i <- 1..55, do: i*i
+    for i <- 1..55, do: i*i
 
-  # import Integer
-  # for i <- 1..30, Integer.is_even(i), do: i*i
+    import Integer
 
-  # for x <- [1,2,3], y <- [2,3,4], do: x * y
+    for i <- 1..30, Integer.is_even(i), do: i*i
 
-  -https://stackoverflow.com/questions/56210712/how-to-cleanly-take-multiline-input-from-the-terminal-using-elixir
+    for x <- [1,2,3], y <- [2,3,4], do: x * y ```
 
-  - escript .\desafio_cli
+  - https://stackoverflow.com/questions/56210712/how-to-cleanly-take-multiline-input-from-the-terminal-using-elixir
+
+  - Como rodar o binário no Windows: escript .\desafio_cli

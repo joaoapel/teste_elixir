@@ -9,11 +9,18 @@ defmodule DesafioCli do
   """
 
   def main(_args) do
-   pegar_nomes()
+   input_names()
    |> Enum.frequencies()
    |> Enum.map(fn {k, v} -> {k, to_roman(v)} end)
    |> Enum.map(fn ({key, value}) -> IO.puts [key <> " " <> value] end)
   end
+
+  def input_names do
+    IO.stream(:stdio, :line)
+    |> Enum.take_while(&(&1 != "\n"))
+    |> Enum.map(&String.replace(&1, "\n", ""))
+  end
+
 
   def to_roman(number, roman_accumulator) when number >= 1000 do
     to_roman(number - 1000, roman_accumulator <> "M")
@@ -71,10 +78,5 @@ defmodule DesafioCli do
     to_roman(number, "")
   end
 
-  def pegar_nomes do
-    IO.stream(:stdio, :line)
-    |> Enum.take_while(&(&1 != "\n"))
-    |> Enum.map(&String.replace(&1, "\n", ""))
-  end
 
 end
