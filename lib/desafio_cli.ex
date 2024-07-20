@@ -10,73 +10,37 @@ defmodule DesafioCli do
 
   def main(_args) do
    input_names()
-   |> Enum.frequencies()
-   |> Enum.map(fn {k, v} -> {k, to_roman(v)} end)
-   |> Enum.map(fn ({key, value}) -> IO.puts [key <> " " <> value] end)
+   |> process_names()
+   |> IO.puts()
   end
 
-  def input_names do
+  def process_names(names_list) do
+    names_list
+    |> Enum.frequencies()
+    |> Enum.map(fn {k, v} -> {k, numeral(v)} end)
+    |> Enum.map(fn {k, v} -> [k <> " " <> v <> "\n"] end)
+  end
+
+  def input_names() do
     IO.stream(:stdio, :line)
     |> Enum.take_while(&(&1 != "\n"))
     |> Enum.map(&String.replace(&1, "\n", ""))
   end
 
-
-  def to_roman(number, roman_accumulator) when number >= 1000 do
-    to_roman(number - 1000, roman_accumulator <> "M")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 900 do
-    to_roman(number - 900, roman_accumulator <> "CM")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 500 do
-    to_roman(number - 500, roman_accumulator <> "D")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 400 do
-    to_roman(number - 400, roman_accumulator <> "CD")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 100 do
-    to_roman(number - 100, roman_accumulator <> "C")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 90 do
-    to_roman(number - 90, roman_accumulator <> "XC")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 50 do
-    to_roman(number - 50, roman_accumulator <> "L")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 40 do
-    to_roman(number - 40, roman_accumulator <> "XL")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 10 do
-    to_roman(number - 10, roman_accumulator <> "X")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 9 do
-    to_roman(number - 9, roman_accumulator <> "IX")
-  end
-
-  def to_roman(number, roman_accumulator) when number >= 5 do
-    to_roman(number - 5, roman_accumulator <> "V")
-  end
-
-  def to_roman(number, roman_accumulator) when number == 4 do
-    roman_accumulator <> "IV"
-  end
-
-  def to_roman(number, roman_accumulator) when number <= 3 do
-    roman_accumulator <> String.duplicate("I", number)
-  end
-
-  def to_roman(number) do
-    to_roman(number, "")
-  end
-
+  @spec numeral(pos_integer) :: String.t()
+  def numeral(n) when n >= 1000, do: "M" <> numeral(n - 1000)
+  def numeral(n) when n >= 900, do: "CM" <> numeral(n - 900)
+  def numeral(n) when n >= 500, do: "D" <> numeral(n - 500)
+  def numeral(n) when n >= 400, do: "CD" <> numeral(n - 400)
+  def numeral(n) when n >= 100, do: "C" <> numeral(n - 100)
+  def numeral(n) when n >= 90, do: "XC" <> numeral(n - 90)
+  def numeral(n) when n >= 50, do: "L" <> numeral(n - 50)
+  def numeral(n) when n >= 40, do: "XL" <> numeral(n - 40)
+  def numeral(n) when n >= 10, do: "X" <> numeral(n - 10)
+  def numeral(n) when n >= 9, do: "IX" <> numeral(n - 9)
+  def numeral(n) when n >= 5, do: "V" <> numeral(n - 5)
+  def numeral(n) when n >= 4, do: "IV" <> numeral(n - 4)
+  def numeral(n) when n >= 1, do: "I" <> numeral(n - 1)
+  def numeral(0), do: ""
 
 end

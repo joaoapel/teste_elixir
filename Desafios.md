@@ -24,6 +24,10 @@
 
     for x <- [1,2,3], y <- [2,3,4], do: x * y ```
 
-  - https://stackoverflow.com/questions/56210712/how-to-cleanly-take-multiline-input-from-the-terminal-using-elixir
+- https://stackoverflow.com/questions/56210712/how-to-cleanly-take-multiline-input-from-the-terminal-using-elixir
 
-  - Como rodar o binário no Windows: escript .\desafio_cli
+- Como rodar o binário no Windows: escript .\desafio_cli
+
+- https://hexdocs.pm/elixir/1.17.1/patterns-and-guards.html
+
+- chamar testes: mix test
